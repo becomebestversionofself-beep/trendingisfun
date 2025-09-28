@@ -1,0 +1,208 @@
+
+
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import Tooltip from '@mui/material/Tooltip';
+
+export default function TrendingForm({ setFormData, values, onFieldChange }) {
+  // Button enable/disable logic
+  const allFieldsEmpty = !values.keyword && !values.hashtag && !values.additionalText && !values.game;
+  const isGameNotEmpty = !!values.game;
+  const isAnyFieldNotEmpty = !!(values.keyword || values.hashtag || values.additionalText || values.game);
+  const canGenerate = !!(values.keyword && values.hashtag && values.game);
+
+  const onGenerate = () => {
+    if (setFormData) setFormData({ ...values });
+  };
+
+  return (
+    <Box sx={{ flexGrow: 1, p: '20px' }}>
+      <Grid container spacing={2} direction="column">
+        <Grid item>
+          <TextField
+            label="Keyword"
+            variant="outlined"
+            fullWidth
+            value={values.keyword}
+            onChange={e => onFieldChange('keyword', e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Tooltip title="Paste">
+                    <IconButton
+                      aria-label="paste keyword"
+                      onClick={async () => {
+                        if (navigator.clipboard) {
+                          const text = await navigator.clipboard.readText();
+                          onFieldChange('keyword', text);
+                        }
+                      }}
+                      edge="end"
+                    >
+                      <ContentPasteIcon />
+                    </IconButton>
+                  </Tooltip>
+                </InputAdornment>
+              )
+            }}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Hashtag"
+            variant="outlined"
+            fullWidth
+            value={values.hashtag}
+            onChange={e => onFieldChange('hashtag', e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Tooltip title="Paste">
+                    <IconButton
+                      aria-label="paste hashtag"
+                      onClick={async () => {
+                        if (navigator.clipboard) {
+                          const text = await navigator.clipboard.readText();
+                          onFieldChange('hashtag', text);
+                        }
+                      }}
+                      edge="end"
+                    >
+                      <ContentPasteIcon />
+                    </IconButton>
+                  </Tooltip>
+                </InputAdornment>
+              )
+            }}
+          />
+        </Grid>
+        <Grid item>
+          <FormControl fullWidth variant="outlined">
+            <InputLabel id="separator-label">Separator</InputLabel>
+            <Select
+              labelId="separator-label"
+              value={values.separator}
+              label="Separator"
+              onChange={e => onFieldChange('separator', e.target.value)}
+            >
+              <MenuItem value=",">Comma</MenuItem>
+              <MenuItem value="|">Pipe</MenuItem>
+              <MenuItem value={"\n"}>New Line</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item>
+          <RadioGroup
+            row
+            value={values.listType}
+            onChange={e => onFieldChange('listType', e.target.value)}
+            name="list-type"
+          >
+            <FormControlLabel value="userdefined" control={<Radio />} label="User defined" />
+            <FormControlLabel value="predefined" control={<Radio />} label="Pre defined lists" />
+          </RadioGroup>
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Additional text"
+            variant="outlined"
+            fullWidth
+            multiline
+            minRows={3}
+            value={values.additionalText}
+            onChange={e => onFieldChange('additionalText', e.target.value)}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Game"
+            variant="outlined"
+            fullWidth
+            multiline
+            minRows={10}
+            maxRows={10}
+            value={values.game}
+            onChange={e => onFieldChange('game', e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
+                  <Box sx={{ alignSelf: 'flex-end' }}>
+                    <Tooltip title="Paste">
+                      <IconButton
+                        aria-label="paste game"
+                        onClick={async () => {
+                          if (navigator.clipboard) {
+                            const text = await navigator.clipboard.readText();
+                            onFieldChange('game', text);
+                          }
+                        }}
+                        size="small"
+                        edge="end"
+                        sx={{ mt: 0.5 }}
+                      >
+                        <ContentPasteIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                  <Box sx={{ alignSelf: 'flex-end' }}>
+                    <Tooltip title="Reset">
+                      <IconButton
+                        aria-label="reset game"
+                        onClick={() => onFieldChange('game', '')}
+                        size="small"
+                        edge="end"
+                        sx={{ mb: 0.5 }}
+                      >
+                        <RestartAltIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                </Box>
+              )
+            }}
+          />
+        </Grid>
+        <Grid item container justifyContent="end" wrap="nowrap" spacing={2}>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={allFieldsEmpty || !canGenerate}
+            onClick={onGenerate}
+            sx={{ ml: 1 }}
+          >
+            Generate
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            disabled={allFieldsEmpty || !isGameNotEmpty}
+            sx={{ ml: 1 }}
+          >
+            Reset List
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            disabled={allFieldsEmpty || !isAnyFieldNotEmpty}
+            sx={{ ml: 1 }}
+          >
+            Reset All
+          </Button>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+}
