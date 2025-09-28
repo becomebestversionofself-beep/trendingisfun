@@ -14,7 +14,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import Tooltip from '@mui/material/Tooltip';
 
 export default function TrendingForm({ setFormData, values, onFieldChange }) {
@@ -154,19 +153,6 @@ export default function TrendingForm({ setFormData, values, onFieldChange }) {
                         sx={{ mt: 0.5 }}
                       >
                         <ContentPasteIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                  </Box>
-                  <Box sx={{ alignSelf: 'flex-end' }}>
-                    <Tooltip title="Reset">
-                      <IconButton
-                        aria-label="reset game"
-                        onClick={() => onFieldChange('game', '')}
-                        size="small"
-                        edge="end"
-                        sx={{ mb: 0.5 }}
-                      >
-                        <RestartAltIcon fontSize="small" />
                       </IconButton>
                     </Tooltip>
                   </Box>
