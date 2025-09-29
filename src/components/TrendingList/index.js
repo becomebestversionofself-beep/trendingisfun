@@ -22,7 +22,7 @@ export default function TrendingList({ formData }) {
     .filter(Boolean);
 
   const getItemContent = (item) => {
-    return `${item} ${formData.additionalText}\n${formData.keyword}\n${formData.hashtag}`;
+    return `${item} ${formData.additionalText}\n\n${formData.keyword}\n${formData.hashtag}`;
   };
 
   const handleCopy = (content) => {
@@ -42,6 +42,7 @@ export default function TrendingList({ formData }) {
                 <Typography variant="body1">
                   {item} {formData.additionalText}
                 </Typography>
+                <br></br>
                 <Typography variant="body2" color="text.secondary">
                   {formData.keyword}
                 </Typography>

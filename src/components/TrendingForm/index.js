@@ -176,6 +176,7 @@ export default function TrendingForm({ setFormData, values, onFieldChange }) {
             color="secondary"
             disabled={allFieldsEmpty || !isGameNotEmpty}
             sx={{ ml: 1 }}
+            onClick={() => onFieldChange('game', '')}
           >
             Reset List
           </Button>
