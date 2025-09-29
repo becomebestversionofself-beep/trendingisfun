@@ -28,7 +28,7 @@ export default function TrendingForm({ setFormData, values, onFieldChange }) {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, p: '20px' }}>
+    <Box sx={{ flexGrow: 1, p: '10px 20px' }}>
       <Grid container spacing={2} direction="column">
         <Grid item>
           <TextField
@@ -103,7 +103,7 @@ export default function TrendingForm({ setFormData, values, onFieldChange }) {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item>
+        {/* <Grid item>
           <RadioGroup
             row
             value={values.listType}
@@ -113,7 +113,7 @@ export default function TrendingForm({ setFormData, values, onFieldChange }) {
             <FormControlLabel value="userdefined" control={<Radio />} label="User defined" />
             <FormControlLabel value="predefined" control={<Radio />} label="Pre defined lists" />
           </RadioGroup>
-        </Grid>
+        </Grid> */}
         <Grid item>
           <TextField
             label="Additional text"
