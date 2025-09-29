@@ -5,7 +5,7 @@ import App from "./App.js";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { getTheme } from "./theme"; // 👈 import custom theme function
+import getTheme from "./theme"; // 👈 import custom theme function
 
 function Root() {
   const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");

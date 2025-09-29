@@ -48,7 +48,6 @@ export default function Home({ mode, onToggleMode }) {
         </Toolbar>
       </AppBar>
 
-      {/* Responsive layout: side by side on laptop, overlay on mobile/tablet if formData is set */}
       {isLaptop ? (
         <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: 4, p: 2 }}>
           <Box sx={{ flex: 1 }}>

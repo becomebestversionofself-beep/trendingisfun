@@ -185,6 +185,14 @@ export default function TrendingForm({ setFormData, values, onFieldChange }) {
             color="secondary"
             disabled={allFieldsEmpty || !isAnyFieldNotEmpty}
             sx={{ ml: 1 }}
+            onClick={() => {
+              onFieldChange('keyword', '');
+              onFieldChange('hashtag', '');
+              onFieldChange('separator', '\n');
+              onFieldChange('listType', 'userdefined');
+              onFieldChange('additionalText', '');
+              onFieldChange('game', '');
+            }}
           >
             Reset All
           </Button>

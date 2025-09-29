@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import { useState } from "react";
 
 export default function TrendingList({ formData }) {
@@ -39,7 +40,7 @@ export default function TrendingList({ formData }) {
       {items.map((item, idx) => {
         const content = getItemContent(item, idx);
         return (
-          <Paper key={idx} sx={{ p: 2, mb: 2, position: 'relative', backgroundColor: copiedIndex.includes(idx) ? '#DFF6DD' : 'inherit' }}>
+          <Paper key={idx} sx={{ p: 2, mb: 2, position: 'relative' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <Box>
                 <Typography variant="body1">
@@ -59,7 +60,7 @@ export default function TrendingList({ formData }) {
                   ))}
               </Box>
               <IconButton aria-label="copy" onClick={() => handleCopy(content, idx)}>
-                <ContentCopyIcon />
+                {copiedIndex.includes(idx) ? <CheckRoundedIcon /> : <ContentCopyIcon />}
               </IconButton>
             </Box>
           </Paper>
