@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/trendingisfun/static/js/main.dbf49fca.js",
+    "main.js": "/trendingisfun/static/js/main.9d77cd53.js",
     "index.html": "/trendingisfun/index.html",
-    "main.dbf49fca.js.map": "/trendingisfun/static/js/main.dbf49fca.js.map"
+    "main.9d77cd53.js.map": "/trendingisfun/static/js/main.9d77cd53.js.map"
   },
   "entrypoints": [
-    "static/js/main.dbf49fca.js"
+    "static/js/main.9d77cd53.js"
   ]
 }
