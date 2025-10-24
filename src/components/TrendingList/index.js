@@ -1,5 +1,6 @@
 
 import Box from "@mui/material/Box";
+import { blpair, country, food, weekday, month } from "./predefinedData";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
@@ -8,16 +9,32 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import { useState } from "react";
 
 export default function TrendingList({ formData }) {
+
   const [copiedIndex, setCopiedIndex] = useState([]);
-  if (!formData || !formData.game) return null;
+  if (!formData) return null;
 
   // Determine separator based on listType
   let separator = "\n";
   separator = formData.separator || "\n";
-  const items = formData.game
-    .split(separator)
-    .map(item => item.trim())
-    .filter(Boolean);
+
+  let items = [];
+  // Check for multiple predefined selections
+  const predefinedItems = [];
+  if (formData.predefined_blpair) predefinedItems.push(...blpair);
+  if (formData.predefined_country) predefinedItems.push(...country);
+  if (formData.predefined_food) predefinedItems.push(...food);
+  if (formData.predefined_weekday) predefinedItems.push(...weekday);
+  if (formData.predefined_month) predefinedItems.push(...month);
+
+  if (predefinedItems.length > 0) {
+    items = predefinedItems;
+  } else {
+    if (!formData.game) return null;
+    items = formData.game
+      .split(separator)
+      .map(item => item.trim())
+      .filter(Boolean);
+  }
 
   const getItemContent = (item) => {
     const hashtags = formData.hashtag

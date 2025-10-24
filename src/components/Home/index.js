@@ -9,6 +9,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import TrendingForm from "../TrendingForm";
 import TrendingList from "../TrendingList";
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
@@ -22,11 +23,12 @@ export default function Home({ mode, onToggleMode }) {
     game: ''
   });
   const [formData, setFormData] = useState(null);
-  const [showList, setShowList] = useState(false);
   const isLaptop = useMediaQuery('(min-width:900px)');
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  // Back icon handler: just show the form again, don't clear formData or formFields
-  const handleBack = () => setShowList(false);
+  // Back icon handler: go back in history
+  const handleBack = () => navigate(-1);
 
   // Handler to update individual fields
   const handleFieldChange = (field, value) => {
@@ -52,7 +54,7 @@ export default function Home({ mode, onToggleMode }) {
         <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: 4, p: 2 }}>
           <Box sx={{ flex: 1 }}>
             <TrendingForm
-              setFormData={data => { setFormData(data); setShowList(true); }}
+              setFormData={data => { setFormData(data); navigate('/list'); }}
               values={formFields}
               onFieldChange={handleFieldChange}
             />
@@ -62,7 +64,7 @@ export default function Home({ mode, onToggleMode }) {
           </Box>
         </Box>
       ) : (
-        showList && formData ? (
+        location.pathname === '/list' && formData ? (
           <Box sx={{ p: 2 }}>
             <Tooltip title="Back to form">
               <IconButton onClick={handleBack} sx={{ mb: 2 }}>
@@ -74,7 +76,7 @@ export default function Home({ mode, onToggleMode }) {
         ) : (
           <Box sx={{ p: 2 }}>
             <TrendingForm
-              setFormData={data => { setFormData(data); setShowList(true); }}
+              setFormData={data => { setFormData(data); navigate('/list'); }}
               values={formFields}
               onFieldChange={handleFieldChange}
             />
