@@ -27,6 +27,8 @@ export default function TrendingForm({ setFormData, values, onFieldChange }) {
     'predefined_food',
     'predefined_weekday',
     'predefined_month',
+    'predefined_animal',
+    'predefined_gmmtv_actor',
   ];
   const isPredefinedSelected = values.listType === 'predefined';
   const isAnyPredefinedChecked = predefinedKeys.some(key => !!values[key]);
@@ -43,6 +45,8 @@ export default function TrendingForm({ setFormData, values, onFieldChange }) {
         'predefined_food',
         'predefined_weekday',
         'predefined_month',
+        'predefined_animal',
+        'predefined_gmmtv_actor',
       ];
       const predefinedSelections = {};
       options.forEach(opt => {
@@ -205,6 +209,8 @@ export default function TrendingForm({ setFormData, values, onFieldChange }) {
                   { key: 'predefined_food', label: 'Food' },
                   { key: 'predefined_weekday', label: 'Week Day' },
                   { key: 'predefined_month', label: 'Month of Year' },
+                  { key: 'predefined_animal', label: 'Animal' },
+                  { key: 'predefined_gmmtv_actor', label: 'GMMTV Actors' },
                 ];
                 return (
                   <Grid container spacing={2}>
@@ -266,6 +272,8 @@ export default function TrendingForm({ setFormData, values, onFieldChange }) {
               onFieldChange('predefined_food', false);
               onFieldChange('predefined_weekday', false);
               onFieldChange('predefined_month', false);
+              onFieldChange('predefined_animal', false);
+              onFieldChange('predefined_gmmtv_actor', false);
             }}
           >
             Reset All

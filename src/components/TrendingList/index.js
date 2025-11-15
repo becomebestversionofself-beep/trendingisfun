@@ -1,6 +1,6 @@
 
 import Box from "@mui/material/Box";
-import { blpair, country, food, weekday, month } from "./predefinedData";
+import { blpair, country, food, weekday, month, animal, gmmtv_actor } from "./predefinedData";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
@@ -25,6 +25,8 @@ export default function TrendingList({ formData }) {
   if (formData.predefined_food) predefinedItems.push(...food);
   if (formData.predefined_weekday) predefinedItems.push(...weekday);
   if (formData.predefined_month) predefinedItems.push(...month);
+  if (formData.predefined_gmmtv_actor) predefinedItems.push(...gmmtv_actor);
+  if (formData.predefined_animal) predefinedItems.push(...animal);
 
   if (predefinedItems.length > 0) {
     items = predefinedItems;
